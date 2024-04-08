@@ -1,0 +1,29 @@
+name: Github Actions Practica
+on: [push]
+
+Jobs:
+  Explorando GitHub Actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Imprime el evento que activó el workflow
+        run: echo "El flujo de trabajo ha sido ejecutado en el evento: $((github.event_name}}"
+
+      - name: Imprime información del servidor
+        run: echo "El trabajo se esta ejecutando en un servidor ${{ runner.os) hospedado en GitHub"
+
+      - name: Imprime información del repositorio
+        run: |
+          echo "El nombre de la rama es: $ github.ref }} y tu repositorio es: ${{ github.repository }}."
+
+      - name: Verifica el codigo del repositorio
+        uses: actions/checkout@v2
+
+      - name: Clona el repositorio al runner
+        run: echo "El repositorio: ${{ github.repository)) ha sido colonado al runner."
+
+      - name: Lista los archivos en el repositorio
+        run: ls ${{ github.workspace }}
+
+      - name: Imprime el estado del trabajo
+        run: echo "El estado del trabajos: $ job.status))."
